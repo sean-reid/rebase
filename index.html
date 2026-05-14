@@ -377,6 +377,15 @@
 
     #check-btn.ready:hover { filter: brightness(1.1); }
 
+    #check-btn.share-ready {
+      background: var(--correct);
+      color: var(--text);
+      cursor: pointer;
+      letter-spacing: 2px;
+    }
+
+    #check-btn.share-ready:active { transform: scale(0.97); }
+
     #attempt-history {
       margin-top: 12px;
       display: flex;
@@ -1803,9 +1812,14 @@
       var btn = document.getElementById('check-btn');
       if (state.gameOver) {
         btn.classList.remove('ready');
-        btn.textContent = state.won ? 'SOLVED' : 'GAME OVER';
+        btn.classList.add('share-ready');
+        btn.innerHTML = '<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle;margin-right:6px"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>Share';
+        btn.onclick = shareResult;
         return;
       }
+      btn.classList.remove('share-ready');
+      btn.innerHTML = 'CHECK';
+      btn.onclick = checkAttempt;
       if (getCheckReady()) {
         btn.classList.add('ready');
       } else {
@@ -2387,10 +2401,6 @@
     }
 
     function showStats() {
-      if (state.gameOver) {
-        showGameOver();
-        return;
-      }
       var stats = loadStats('rebase-daily-stats');
       var body = document.getElementById('stats-body');
       var winPct = stats.played > 0 ? Math.round((stats.won / stats.played) * 100) : 0;
