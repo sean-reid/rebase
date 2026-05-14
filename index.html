@@ -2387,6 +2387,10 @@
     }
 
     function showStats() {
+      if (state.gameOver) {
+        showGameOver();
+        return;
+      }
       var stats = loadStats('rebase-daily-stats');
       var body = document.getElementById('stats-body');
       var winPct = stats.played > 0 ? Math.round((stats.won / stats.played) * 100) : 0;
