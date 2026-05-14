@@ -1,0 +1,10 @@
+node_modules/
+.claude/
+CLAUDE.md
+GAME_DESIGN.md
+.DS_Store
+test-results/
+playwright-report/
+screenshots/
+package.json
+package-lock.json
