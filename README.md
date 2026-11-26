@@ -2,7 +2,7 @@
 
 A daily puzzle game about numeric bases.
 
-**[Play now](https://sean-reid.github.io/rebase/)**
+**[Play now](https://seanre.id/rebase/)**
 
 ## How it works
 
